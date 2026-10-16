@@ -12,6 +12,11 @@ def generate_launch_description():
     with open(urdf, 'r') as infp:
         robot_desc = infp.read()
 
+    rviz_file_name = "display.rviz"
+    rviz = os.path.join(
+        get_package_share_directory('intro_rover_description'),
+        'rviz',
+        rviz_file_name)
     
     return LaunchDescription([
         Node(
@@ -29,5 +34,6 @@ def generate_launch_description():
         Node(
             package='rviz2', 
             executable='rviz2',
+            arguments= ['-d' , rviz]
         ),
     ])
